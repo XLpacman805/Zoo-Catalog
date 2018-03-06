@@ -6,12 +6,32 @@ public class Herbivore extends Animal
     protected double dailyVolume;
     protected double proteinSupp;
 
+    Herbivore()
+    {
+        super();
+        setLocalAttributes("None", 0.0, 0.0);
+    }
+
     Herbivore(String name, String location, int age, double weight, String health,
                 boolean endangered, String favoriteFeed, double dailyVolume, 
                 double proteinSupp)
     {
+        
         super(name, location, age, weight, health, endangered);
+        setLocalAttributes(favoriteFeed, dailyVolume, proteinSupp);
+    }
 
+    public void setAllAttributes(String name, String location, int age, double weight, 
+                                String health, boolean endangered, String favoriteFeed, 
+                                double dailyVolume, double proteinSupp)
+    {
+        
+        super.setAllAttributes(name, location, age, weight, health, endangered);
+        setLocalAttributes(favoriteFeed, dailyVolume, proteinSupp);
+    }
+
+    private void setLocalAttributes(String favoriteFeed, double dailyVolume, double proteinSupp)
+    {
         this.favoriteFeed = favoriteFeed;
         this.dailyVolume = dailyVolume;
         this.proteinSupp = proteinSupp;

@@ -2,6 +2,11 @@ import java.util.*;
 
 public class Feline extends Carnivore
 {
+    Feline()
+    {
+        super();
+    }
+
     Feline(String name, String location, int age, double weight, String health,
             boolean endangered, String preferredMeat, double dailyVolume)
     {

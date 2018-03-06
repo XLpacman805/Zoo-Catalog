@@ -9,8 +9,19 @@ public class Animal
     protected String health;
     protected boolean endangered;
 
+    Animal()
+    {
+        setAllAttributes("None", "None", 0, 0.0, "None", false);
+    }
+
     Animal(String name, String location, int age, double weight, String health, 
             boolean endangered)
+    {
+        setAllAttributes(name, location, age, weight, health, endangered);
+    }
+
+    public void setAllAttributes(String name, String location, int age, double weight, 
+                                String health, boolean endangered)
     {
         this.name = name;
         this.location = location;
