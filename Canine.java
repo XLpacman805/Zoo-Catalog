@@ -9,10 +9,10 @@ public class Canine extends Carnivore
     }
     
     //overloaded constructor accepts all canine attributes
-    Canine(String name, String location, int age, double weight, String health,
-            boolean endangered, String preferredMeat, double dailyVolume)
+    Canine(String name, String location, int age, double weight, Health health,
+        boolean endangered, String preferredMeat, double dailyVolume)
     {
-        super(name, location, age, weight, health, endangered, 
-                preferredMeat, dailyVolume);
+        super(name, location, age, weight, health, endangered, preferredMeat, 
+            dailyVolume);
     }
 }

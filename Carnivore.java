@@ -14,8 +14,8 @@ public class Carnivore extends Animal
     }
 
     //overloaded constructor accepts all carnivore attributes
-    Carnivore(String name, String location, int age, double weight, String health,
-                boolean endangered, String preferredMeat, double dailyVolume)
+    Carnivore(String name, String location, int age, double weight, Health health,
+        boolean endangered, String preferredMeat, double dailyVolume)
     {
         
         super(name, location, age, weight, health, endangered);
@@ -24,10 +24,9 @@ public class Carnivore extends Animal
 
     //passes animal attributes to base class, sets local attributes
     public void setAllAttributes(String name, String location, int age, 
-                                    double weight, String health, boolean endangered, 
-                                    String preferredMeat, double dailyVolume)
+        double weight, Health health, boolean endangered, String preferredMeat, 
+        double dailyVolume)
     {
-        
         super.setAllAttributes(name, location, age, weight, health, endangered);
         setLocalAttributes(preferredMeat, dailyVolume);
     }
@@ -43,7 +42,6 @@ public class Carnivore extends Animal
     public static void printCarnivoreHeader()
     {
         System.out.println("\nCARNIVORES\n");
-
         printAnimalHeader();
 
         System.out.printf("%-16s %-14s", "Preferred Meat", "Daily Volume"); 
@@ -53,7 +51,6 @@ public class Carnivore extends Animal
     public void printInfo()
     {
         super.printInfo();
-        
         System.out.printf("%-16s %-14s", preferredMeat, dailyVolume);
     }
 }
