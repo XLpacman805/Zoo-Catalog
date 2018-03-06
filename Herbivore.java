@@ -2,16 +2,19 @@ import java.util.*;
 
 public class Herbivore extends Animal
 {
+    //attributes shared by all herbivores
     protected String favoriteFeed;
     protected double dailyVolume;
     protected double proteinSupp;
 
+    //blank constructor
     Herbivore()
     {
         super();
         setLocalAttributes("None", 0.0, 0.0);
     }
 
+    //overloaded constructor accepts all herbivore attributes
     Herbivore(String name, String location, int age, double weight, String health,
                 boolean endangered, String favoriteFeed, double dailyVolume, 
                 double proteinSupp)
@@ -21,6 +24,7 @@ public class Herbivore extends Animal
         setLocalAttributes(favoriteFeed, dailyVolume, proteinSupp);
     }
 
+    //passes animal attributes to base class, sets local attributes
     public void setAllAttributes(String name, String location, int age, double weight, 
                                 String health, boolean endangered, String favoriteFeed, 
                                 double dailyVolume, double proteinSupp)
@@ -30,6 +34,7 @@ public class Herbivore extends Animal
         setLocalAttributes(favoriteFeed, dailyVolume, proteinSupp);
     }
 
+    //sets specifically herbivore attributes
     private void setLocalAttributes(String favoriteFeed, double dailyVolume, double proteinSupp)
     {
         this.favoriteFeed = favoriteFeed;
@@ -37,6 +42,7 @@ public class Herbivore extends Animal
         this.proteinSupp = proteinSupp;
     }
 
+    //static function that prints header listing herbivore attribute categories
     public static void printHerbivoreHeader()
     {
         System.out.println("\nHERBIVORES\n");
@@ -47,10 +53,10 @@ public class Herbivore extends Animal
                             "Daily Volume", "Weekly Protein Supplement"); 
     }
 
+    //prints herbivore attributes
     public void printInfo()
     {   
         super.printInfo();
-
         System.out.printf("%-15s %-14.1f %-6.1f", favoriteFeed, dailyVolume, 
                             proteinSupp);
     }
