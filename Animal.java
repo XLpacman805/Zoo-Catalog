@@ -8,49 +8,49 @@ public class Animal
     }
     
     //attributes shared by all animals
+    protected String species;
     protected String name;
     protected String location;
     protected int age;
     protected double weight;
     protected Health health;
-    protected boolean endangered;
 
-    //blank constructor
+    //default constructor
     Animal()
     {
-        setAllAttributes("None", "None", 0, 0.0, Health.NONE, false);
+        setAllAttributes("None", "None", 0, 0.0, Health.NONE);
+        species = "Animal";
     }
 
     //overloaded constructor accepts animal attributes
-    Animal(String name, String location, int age, double weight, Health health, 
-        boolean endangered)
+    Animal(String name, String location, int age, double weight, Health health)
     {
-        setAllAttributes(name, location, age, weight, health, endangered);
+        setAllAttributes(name, location, age, weight, health);
+        this.species = "Animal";
     }
 
     //sets all animal attributes
-    public void setAllAttributes(String name, String location, int age, double weight, 
-        Health health, boolean endangered)
+    public void setAllAttributes(String name, String location, 
+        int age, double weight, Health health)
     {
         this.name = name;
         this.location = location;
         this.age = age;
         this.weight = weight;
         this.health = health;
-        this.endangered = endangered;
     }
 
-    //static function that prints header listing animal attribute categories
-    public static void printAnimalHeader()
+    //prints header listing animal attribute categories
+    public void printHeader()
     {
-        System.out.printf("%-9s %-11s %-4s %-7s %-10s %-12s", "Name", "Location", 
-                            "Age", "Weight", "Health", "Endangered");
+        System.out.printf("%-10s %-8s %-11s %-5s %-8s %-11s", "Species", "Name", 
+            "Location", "Age", "Weight", "Health");
     }
 
     //prints animal attributes
     public void printInfo()
     {
-        System.out.printf("%-9s %-11s %-4s %-7s %-10s %-12s", 
-                            name, location, age, weight, health, endangered);
+        System.out.printf("%-10s %-8s %-11s %-5d %-8.1f %-11s", species,
+            name, location, age, weight, health);
     }
 }
