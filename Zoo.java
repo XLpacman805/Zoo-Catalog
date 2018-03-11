@@ -13,7 +13,6 @@ public class Zoo
         Deer deer = new Deer("Bambi", "Brushland", 1, 150, 
             Animal.Health.SICK, "Corn Meal", 4, 10);
 
-
         //create carnivores
         Lion lion = new Lion("Mufasa", "Savannah", 3, 200, 
             Animal.Health.WELL, "Beef", 3);
@@ -35,6 +34,11 @@ public class Zoo
         zooList.addElement(wolf);
         zooList.addElement(bear);
         
+        printZooInfo(zooList);
+    }
+
+    public static void printZooInfo(Vector<Animal> zooList)
+    {
         for (int i = 0; i < zooList.size(); i++)
         {
             System.out.println();
@@ -43,8 +47,6 @@ public class Zoo
             zooList.elementAt(i).printInfo();
             System.out.println();
         }
-
         System.out.println();
-        
     }
 }
