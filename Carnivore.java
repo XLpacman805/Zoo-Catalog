@@ -2,32 +2,34 @@ import java.util.*;
 
 public class Carnivore extends Animal
 {
-    //attributes share by all carnivores
+    //attributes shared by all carnivores
     protected String preferredMeat;
     protected double dailyVolume;
 
-    //blank constructor
+    //default constructor
     Carnivore()
     {
         super();
-        setLocalAttributes("None", 0.0);
+        species = "Carnivore";
+
+        setLocalAttributes("Beef", 0.0);
     }
 
     //overloaded constructor accepts all carnivore attributes
     Carnivore(String name, String location, int age, double weight, Health health,
-        boolean endangered, String preferredMeat, double dailyVolume)
+        String preferredMeat, double dailyVolume)
     {
-        
-        super(name, location, age, weight, health, endangered);
+        super(name, location, age, weight, health);
+        species = "Carnivore";
+
         setLocalAttributes(preferredMeat, dailyVolume);
     }
 
     //passes animal attributes to base class, sets local attributes
     public void setAllAttributes(String name, String location, int age, 
-        double weight, Health health, boolean endangered, String preferredMeat, 
-        double dailyVolume)
+        double weight, Health health, String preferredMeat, double dailyVolume)
     {
-        super.setAllAttributes(name, location, age, weight, health, endangered);
+        super.setAllAttributes(name, location, age, weight, health);
         setLocalAttributes(preferredMeat, dailyVolume);
     }
 
@@ -38,12 +40,10 @@ public class Carnivore extends Animal
         this.dailyVolume = dailyVolume;
     }
 
-    //static function that prints header listing herbivore attribute categories
-    public static void printCarnivoreHeader()
+    //function that prints header listing herbivore attribute categories
+    public void printHeader()
     {
-        System.out.println("\nCARNIVORES\n");
-        printAnimalHeader();
-
+        super.printHeader();
         System.out.printf("%-16s %-14s", "Preferred Meat", "Daily Volume"); 
     }
 
