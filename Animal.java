@@ -40,6 +40,41 @@ public class Animal
         this.health = health;
     }
 
+    //sets name
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    //sets location
+    public void setLocation(String location)
+    {
+        this.location = location;
+    }
+
+    //sets age
+    public void setAge(int age)
+    {
+        this.age = age;
+    }
+
+    //sets weight
+    public void setWeight(double weight)
+    {
+        this.weight = weight;
+    }
+
+    //sets health
+    public void setHealth(Health health)
+    {
+        this.health = health;
+    }
+
+    public String getSpecies()
+    {
+        return species;
+    }
+
     //prints header listing animal attribute categories
     public void printHeader()
     {

@@ -12,7 +12,8 @@ public class Carnivore extends Animal
         super();
         species = "Carnivore";
 
-        setLocalAttributes("Beef", 0.0);
+        //default attributes for carnivores
+        setLocalAttributes("Beef", 3.0);
     }
 
     //overloaded constructor accepts all carnivore attributes

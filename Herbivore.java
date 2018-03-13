@@ -13,7 +13,8 @@ public class Herbivore extends Animal
         super();
         species = "Herbivore";
 
-        setLocalAttributes("None", 0.0, 0.0);
+        //default values for herbivores
+        setLocalAttributes("Corn Meal", 4.0, 10.0);
     }
 
     //overloaded constructor accepts all herbivore attributes
@@ -41,6 +42,24 @@ public class Herbivore extends Animal
     {
         this.favoriteFeed = favoriteFeed;
         this.dailyVolume = dailyVolume;
+        this.proteinSupp = proteinSupp;
+    }
+
+    //sets favoritefeed
+    public void setFavoriteFeed(String favoriteFeed)
+    {
+        this.favoriteFeed = favoriteFeed;
+    }
+
+    //sets dailyVolume
+    public void setDailyVolume(double dailyVolume)
+    {
+        this.dailyVolume = dailyVolume;
+    }
+
+    //sets protein Supplement
+    public void setProteinSupplement(double proteinSupp)
+    {
         this.proteinSupp = proteinSupp;
     }
 

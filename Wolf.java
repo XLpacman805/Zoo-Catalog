@@ -10,7 +10,10 @@ public class Wolf extends Canine implements Endangered
         super();
         healthCheckFreq = "3 Days";
         species = "Wolf";
+        
+        //default carnivore attributes for wolf
         preferredMeat = "Mutton";
+        dailyVolume = 4.0;
     }
     
     //overloaded constructor accepts all canine attributes

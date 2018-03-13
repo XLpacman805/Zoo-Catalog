@@ -7,6 +7,8 @@ public class Elephant extends Herbivore
     {
         super();
         species = "Elephant";
+
+        //elephant protein supplement defaults to 50
         proteinSupp = 50.0;
     }
     
