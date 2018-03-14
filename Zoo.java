@@ -37,27 +37,27 @@ public class Zoo
         Bear defaultBear = new Bear();
 
         //add defined animals to zooList vector
-        sortAnimalsAlphabeticallyBySpecies(zooList, definedElephant);
-        sortAnimalsAlphabeticallyBySpecies(zooList, definedDeer);
-        sortAnimalsAlphabeticallyBySpecies(zooList, definedLion);
-        sortAnimalsAlphabeticallyBySpecies(zooList, definedTiger);
-        sortAnimalsAlphabeticallyBySpecies(zooList, definedWolf);
-        sortAnimalsAlphabeticallyBySpecies(zooList, definedBear);
+        insertAnimalIntoZooList(zooList, definedElephant);
+        insertAnimalIntoZooList(zooList, definedDeer);
+        insertAnimalIntoZooList(zooList, definedLion);
+        insertAnimalIntoZooList(zooList, definedTiger);
+        insertAnimalIntoZooList(zooList, definedWolf);
+        insertAnimalIntoZooList(zooList, definedBear);
 
         //add default animals to zooList vector
-        sortAnimalsAlphabeticallyBySpecies(zooList, defaultElephant);
-        sortAnimalsAlphabeticallyBySpecies(zooList, defaultDeer);
-        sortAnimalsAlphabeticallyBySpecies(zooList, defaultLion);
-        sortAnimalsAlphabeticallyBySpecies(zooList, defaultTiger);
-        sortAnimalsAlphabeticallyBySpecies(zooList, defaultWolf);
-        sortAnimalsAlphabeticallyBySpecies(zooList, defaultBear);
+        insertAnimalIntoZooList(zooList, defaultElephant);
+        insertAnimalIntoZooList(zooList, defaultDeer);
+        insertAnimalIntoZooList(zooList, defaultLion);
+        insertAnimalIntoZooList(zooList, defaultTiger);
+        insertAnimalIntoZooList(zooList, defaultWolf);
+        insertAnimalIntoZooList(zooList, defaultBear);
         
         //print all animal info
         printZooInfo(zooList);
     }
 
-    //alphabetizes animals by species
-    public static void sortAnimalsAlphabeticallyBySpecies(Vector<Animal> zooList, Animal animal)
+    //begins process of adding animals to zooList
+    public static void insertAnimalIntoZooList(Vector<Animal> zooList, Animal animal)
     {
         //adds animal to begining of list if list is empty
         if (zooList.size() == 0)
@@ -67,26 +67,31 @@ public class Zoo
         //inserts animal into list alphabetically
         else
         {
-            String newAnimal = animal.getSpecies();
-            String existingAnimal;
-            
-            //loops through zooList to find new animal's spot in list
-            for (int i = 0; i < zooList.size(); i++)
-            {                
-                existingAnimal = zooList.elementAt(i).getSpecies();
+            insertAnimalIntoListAlphabeticallyBySpecies(zooList, animal);
+        }
+    }
 
-                //if new animal is alphabetically higher, insert
-                if (newAnimal.compareTo(existingAnimal) < 0)
-                {
-                    zooList.insertElementAt(animal, i);
-                    break;
-                }
-                //if the end of the list is reached, add animal to end
-                else if (i == zooList.size() - 1)
-                {
-                    zooList.addElement(animal);
-                    break;
-                }
+    public static void insertAnimalIntoListAlphabeticallyBySpecies(Vector<Animal> zooList, Animal animal)
+    {
+        String newAnimal = animal.getSpecies(); //species of added animal
+        String existingAnimal;                  //species of animal in list
+        
+        //loops through zooList to find new animal's spot in list
+        for (int i = 0; i < zooList.size(); i++)
+        {                
+            existingAnimal = zooList.elementAt(i).getSpecies();
+
+            //if new animal is alphabetically higher, insert
+            if (newAnimal.compareTo(existingAnimal) < 0)
+            {
+                zooList.insertElementAt(animal, i);
+                break;
+            }
+            //if the end of the list is reached, add animal to end
+            else if (i == zooList.size() - 1)
+            {
+                zooList.addElement(animal);
+                break;
             }
         }
     }
@@ -94,42 +99,60 @@ public class Zoo
     //prints all animal attributes
     public static void printZooInfo(Vector<Animal> zooList)
     {
-        String animalSpecies;
-        
         //loops through vector to print animal attributes
         for (int i = 0; i < zooList.size(); i++)
         {
-            animalSpecies = zooList.elementAt(i).getSpecies();
-
+            //prevents output duplication of final animal in list
             if (i == zooList.size() - 1)
             {
                 break;
             }
 
-            System.out.println();
-            zooList.elementAt(i).printHeader();
-            System.out.println();
-            zooList.elementAt(i).printInfo();
-            System.out.println();
+            //prints a header and lists all animals of same species beneath
+            printAnimalHeader(zooList, i);
+            printAnimalInfo(zooList, i);
+            i = printInfoForEveryAnimalOfSameSpecies(zooList, i);
+        }
+        System.out.println();
+    }
 
-            String comparitiveSpecies;
-
-            for (int j = i+1; j < zooList.size(); j++)
+    //prints info for animals of same species under one header
+    public static int printInfoForEveryAnimalOfSameSpecies(Vector<Animal> zooList, int i)
+    {
+        String animalSpecies = zooList.elementAt(i).getSpecies(); //species of animal at index i
+        String comparativeSpecies;      //species of animal at i + 1
+        
+        for (int j = i + 1; j < zooList.size(); j++)
+        {
+            comparativeSpecies = zooList.elementAt(j).getSpecies();
+            
+            //if they are the same species, print animal info without new header
+            if (animalSpecies == comparativeSpecies)
             {
-                comparitiveSpecies = zooList.elementAt(j).getSpecies();
-                
-                if (animalSpecies == comparitiveSpecies)
-                {
-                    zooList.elementAt(j).printInfo();
-                    System.out.println(); 
-                }
-                else
-                {
-                    i = j - 1;
-                    break;
-                }
+                printAnimalInfo(zooList, j); 
+            }
+            //when a different species is hit, move i down the list
+            else
+            {
+                i = j - 1;
+                break;
             }
         }
+        return i;
+    }
+
+    //prints animal header
+    public static void printAnimalHeader(Vector<Animal> zooList, int i)
+    {
+        System.out.println();
+        zooList.elementAt(i).printHeader();
+        System.out.println();
+    }
+
+    //prints animal attributes
+    public static void printAnimalInfo(Vector<Animal> zooList, int i)
+    {
+        zooList.elementAt(i).printInfo();
         System.out.println();
     }
 }
