@@ -70,6 +70,7 @@ public class Animal
         this.health = health;
     }
 
+    //returns species
     public String getSpecies()
     {
         return species;

@@ -71,7 +71,9 @@ public class Zoo
         }
     }
 
-    public static void insertAnimalIntoListAlphabeticallyBySpecies(Vector<Animal> zooList, Animal animal)
+    //inserts new animal into list alphabetically by species
+    public static void insertAnimalIntoListAlphabeticallyBySpecies(
+        Vector<Animal> zooList, Animal animal)
     {
         String newAnimal = animal.getSpecies(); //species of added animal
         String existingAnimal;                  //species of animal in list
@@ -87,7 +89,7 @@ public class Zoo
                 zooList.insertElementAt(animal, i);
                 break;
             }
-            //if the end of the list is reached, add animal to end
+            //if the end of the list is reached, add new animal to end
             else if (i == zooList.size() - 1)
             {
                 zooList.addElement(animal);
@@ -100,14 +102,8 @@ public class Zoo
     public static void printZooInfo(Vector<Animal> zooList)
     {
         //loops through vector to print animal attributes
-        for (int i = 0; i < zooList.size(); i++)
+        for (int i = 0; i < zooList.size();)
         {
-            //prevents output duplication of final animal in list
-            if (i == zooList.size() - 1)
-            {
-                break;
-            }
-
             //prints a header and lists all animals of same species beneath
             printAnimalHeader(zooList, i);
             printAnimalInfo(zooList, i);
@@ -117,24 +113,34 @@ public class Zoo
     }
 
     //prints info for animals of same species under one header
-    public static int printInfoForEveryAnimalOfSameSpecies(Vector<Animal> zooList, int i)
+    public static int printInfoForEveryAnimalOfSameSpecies(
+        Vector<Animal> zooList, int i)
     {
-        String animalSpecies = zooList.elementAt(i).getSpecies(); //species of animal at index i
-        String comparativeSpecies;      //species of animal at i + 1
+        //species of animal at index i
+        String animalSpecies = zooList.elementAt(i).getSpecies(); 
+        //species of animal at j + n
+        String comparativeSpecies;
         
         for (int j = i + 1; j < zooList.size(); j++)
         {
             comparativeSpecies = zooList.elementAt(j).getSpecies();
             
-            //if they are the same species, print animal info without new header
+            //if they are the same species, print animal info
             if (animalSpecies == comparativeSpecies)
             {
                 printAnimalInfo(zooList, j); 
+                
+                //if end of list is reached, return size of list for i
+                if (j == zooList.size() - 1)
+                {
+                    return zooList.size();
+                }
             }
-            //when a different species is hit, move i down the list
+            //when a different species is hit in zoolist, move i
+            //to that location in the list
             else
             {
-                i = j - 1;
+                i = j;
                 break;
             }
         }
